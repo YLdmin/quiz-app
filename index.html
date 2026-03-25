@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安徽省事业单位招考点题通 (2026版)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🏛️</span>
+      <div class="logo-text">
+        <span class="logo-main">安徽省事业单位</span>
+        <span class="logo-sub">2026招考点题通</span>
+      </div>
+    </div>
+    <nav class="top-nav">
+      <button class="nav-btn active" onclick="showPage('home')">🏠 首页</button>
+      <button class="nav-btn" onclick="showPage('wrong')">📋 错题本</button>
+      <button class="nav-btn" onclick="showPage('stats')">📈 学习统计</button>
+    </nav>
+  </div>
+</header>
+
+<!-- 首页 -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>2026安徽省事业单位<br><span class="highlight">智能刷题系统</span></h1>
+      <p class="hero-desc">✅ 职业能力倾向测验 + ✅ 综合应用能力 | 覆盖高频考点、历年真题、预测压题</p>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-num" id="total-questions">100+</span><span class="stat-label">题目总量</span></div>
+        <div class="stat-item"><span class="stat-num" id="done-count">0</span><span class="stat-label">已练习</span></div>
+        <div class="stat-item"><span class="stat-num" id="accuracy-rate">0%</span><span class="stat-label">正确率</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 公告栏 -->
+  <div class="notice-box">
+    <span class="notice-icon">📢</span>
+    <span class="notice-text">2026安徽省事业单位联考公告已发布！点击下方模块开始备考→</span>
+  </div>
+
+  <!-- 两大科目 -->
+  <div class="subject-cards">
+    <!-- 职业能力倾向测验 -->
+    <div class="subject-card card-zhiye">
+      <div class="card-header">
+        <span class="card-icon">⚡</span>
+        <div>
+          <h2>职业能力倾向测验</h2>
+          <p>考试时间：90分钟 · 共100道题 · 满分100分</p>
+        </div>
+      </div>
+      <div class="module-grid">
+        <div class="module-item" onclick="startPractice('changshi')">
+          <span class="module-icon">📚</span>
+          <span class="module-name">常识判断</span>
+          <span class="module-tags">政治·法律·经济·历史·科技·省情</span>
+          <span class="module-count" id="count-changshi">32题</span>
+        </div>
+        <div class="module-item" onclick="startPractice('yanyu')">
+          <span class="module-icon">💬</span>
+          <span class="module-name">言语理解与表达</span>
+          <span class="module-tags">选词填空·片段阅读·语句排序</span>
+          <span class="module-count" id="count-yanyu">14题</span>
+        </div>
+        <div class="module-item" onclick="startPractice('shuliang')">
+          <span class="module-icon">🔢</span>
+          <span class="module-name">数量关系</span>
+          <span class="module-tags">数学运算·数字推理</span>
+          <span class="module-count" id="count-shuliang">14题</span>
+        </div>
+        <div class="module-item" onclick="startPractice('panduan')">
+          <span class="module-icon">🧠</span>
+          <span class="module-name">判断推理</span>
+          <span class="module-tags">图形推理·定义判断·逻辑判断·类比推理</span>
+          <span class="module-count" id="count-panduan">14题</span>
+        </div>
+        <div class="module-item" onclick="startPractice('ziliao')">
+          <span class="module-icon">📊</span>
+          <span class="module-name">资料分析</span>
+          <span class="module-tags">增长率·比重·平均数</span>
+          <span class="module-count" id="count-ziliao">6题</span>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-primary" onclick="startMockExam('zhiye')">
+          🎯 全真模拟考试（90分钟）
+        </button>
+        <button class="btn-secondary" onclick="startAllPractice('zhiye')">
+          📝 随机练习
+        </button>
+      </div>
+    </div>
+
+    <!-- 综合应用能力 -->
+    <div class="subject-card card-zonghe">
+      <div class="card-header">
+        <span class="card-icon">✍️</span>
+        <div>
+          <h2>综合应用能力</h2>
+          <p>考试时间：120分钟 · 主观题 · 满分150分</p>
+        </div>
+      </div>
+      <div class="module-grid">
+        <div class="module-item" onclick="startZonghe('gainian')">
+          <span class="module-icon">💡</span>
+          <span class="module-name">概念分析题</span>
+          <span class="module-tags">理解概念内涵，分析特征要点</span>
+          <span class="module-count">2题</span>
+        </div>
+        <div class="module-item" onclick="startZonghe('cailiao')">
+          <span class="module-icon">📄</span>
+          <span class="module-name">材料分析题</span>
+          <span class="module-tags">阅读材料，分析问题，提出对策</span>
+          <span class="module-count">2题</span>
+        </div>
+        <div class="module-item" onclick="startZonghe('xiezuo')">
+          <span class="module-icon">🖊️</span>
+          <span class="module-name">写作题</span>
+          <span class="module-tags">议论文写作，800-1000字</span>
+          <span class="module-count">3题</span>
+        </div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-primary btn-green" onclick="startMockExam('zonghe')">
+          🎯 综合模拟考试（120分钟）
+        </button>
+        <button class="btn-secondary btn-green-outline" onclick="startZonghe('all')">
+          📝 分题型练习
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2026备考指南 -->
+  <div class="guide-section">
+    <h3>📖 2026安徽事业单位备考指南</h3>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <div class="guide-icon">🔥</div>
+        <div class="guide-title">高频考点</div>
+        <div class="guide-content">新质生产力、数字经济、乡村振兴、基层治理、科技创新</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-icon">📅</div>
+        <div class="guide-title">考试时间</div>
+        <div class="guide-content">预计2026年4-5月<br>职业能力倾向测验90分钟<br>综合应用能力120分钟</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-icon">📝</div>
+        <div class="guide-title">题型分布</div>
+        <div class="guide-content">职测：选择100题<br>综应：3-4道主观题</div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-icon">💪</div>
+        <div class="guide-title">备考建议</div>
+        <div class="guide-content">每天练习1-2套真题<br>重点突破判断推理和资料分析<br>综应多看范文积累素材</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 练习页（选择题） -->
+<div id="page-practice" class="page">
+  <div class="practice-header">
+    <button class="back-btn" onclick="goBack()">← 返回</button>
+    <div class="practice-title" id="practice-title">练习</div>
+    <div class="practice-meta">
+      <span id="question-progress">1/10</span>
+      <div class="timer-box" id="timer-box">
+        <span>⏱</span>
+        <span id="timer-display">00:00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+  </div>
+
+  <div class="practice-body">
+    <div class="question-panel">
+      <div class="question-meta">
+        <span class="q-badge" id="q-category-badge">常识判断</span>
+        <span class="q-difficulty" id="q-difficulty">⭐⭐</span>
+        <span class="q-id" id="q-id">Q001</span>
+      </div>
+
+      <div class="material-box" id="material-box" style="display:none">
+        <div class="material-title">📊 参考资料</div>
+        <pre id="material-content"></pre>
+      </div>
+
+      <div class="question-text" id="question-text"></div>
+      <div class="options-list" id="options-list"></div>
+
+      <div class="answer-panel" id="answer-panel" style="display:none">
+        <div class="answer-result" id="answer-result"></div>
+        <div class="explanation-box">
+          <div class="explanation-title">💡 解析</div>
+          <div class="explanation-text" id="explanation-text"></div>
+        </div>
+      </div>
+
+      <div class="question-actions">
+        <button class="btn-outline" onclick="markWrong()" id="btn-mark">⚑ 标记错题</button>
+        <button class="btn-primary" onclick="nextQuestion()" id="btn-next" style="display:none">下一题 →</button>
+        <button class="btn-primary" onclick="showResult()" id="btn-finish" style="display:none">查看结果 🏁</button>
+      </div>
+    </div>
+
+    <div class="answer-sheet-panel">
+      <div class="sheet-title">答题卡</div>
+      <div class="sheet-grid" id="sheet-grid"></div>
+      <div class="sheet-legend">
+        <span><i class="dot dot-done"></i>已答</span>
+        <span><i class="dot dot-correct"></i>正确</span>
+        <span><i class="dot dot-wrong"></i>错误</span>
+        <span><i class="dot dot-current"></i>当前</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 综合应用能力练习页 -->
+<div id="page-zonghe" class="page">
+  <div class="practice-header">
+    <button class="back-btn" onclick="goBack()">← 返回</button>
+    <div class="practice-title" id="zonghe-title">综合应用能力</div>
+    <div class="practice-meta">
+      <div class="timer-box" id="zonghe-timer-box">
+        <span>⏱</span>
+        <span id="zonghe-timer">120:00</span>
+      </div>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="zonghe-progress" style="width:0%"></div>
+  </div>
+  <div class="zonghe-body">
+    <div class="zonghe-question-panel">
+      <div class="question-meta">
+        <span class="q-badge q-badge-green" id="zh-type-badge">概念分析题</span>
+        <span class="q-id" id="zh-qid">ZH001</span>
+      </div>
+      <div class="question-text" id="zh-question-text" style="white-space:pre-wrap"></div>
+      <div class="scoring-tips" id="scoring-tips">
+        <div class="scoring-title">📋 评分要点</div>
+        <ul id="scoring-list"></ul>
+      </div>
+      <textarea class="answer-textarea" id="zh-answer-input" placeholder="请在此处写下你的答案...\n\n建议：先审题，再作答，注意条理清晰"></textarea>
+      <div class="word-count"><span id="word-count">0</span> 字</div>
+      <div class="question-actions">
+        <button class="btn-outline" onclick="showReference()">💡 查看参考答案</button>
+        <button class="btn-primary btn-green" onclick="nextZonghe()" id="btn-zh-next">下一题 →</button>
+        <button class="btn-primary btn-green" onclick="finishZonghe()" id="btn-zh-finish" style="display:none">完成作答 ✓</button>
+      </div>
+    </div>
+    <div class="reference-panel" id="reference-panel" style="display:none">
+      <div class="ref-title">📖 参考答案与思路</div>
+      <div class="ref-content" id="ref-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 成绩页 -->
+<div id="page-result" class="page">
+  <div class="result-container">
+    <div class="result-card">
+      <div class="result-emoji" id="result-emoji">🎉</div>
+      <h2 id="result-title">本次练习结果</h2>
+      <div class="score-circle">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54" fill="none" stroke="#e8eaf6" stroke-width="10"/>
+          <circle cx="60" cy="60" r="54" fill="none" stroke="#5c6bc0" stroke-width="10"
+            stroke-dasharray="339.3" stroke-dashoffset="339.3"
+            id="score-arc" transform="rotate(-90 60 60)"/>
+        </svg>
+        <div class="score-text">
+          <span class="score-num" id="score-num">0</span>
+          <span class="score-total" id="score-total">/10</span>
+        </div>
+      </div>
+      <div class="result-stats">
+        <div class="rs-item">
+          <span class="rs-label">正确</span>
+          <span class="rs-val green" id="res-correct">0</span>
+        </div>
+        <div class="rs-item">
+          <span class="rs-label">错误</span>
+          <span class="rs-val red" id="res-wrong">0</span>
+        </div>
+        <div class="rs-item">
+          <span class="rs-label">用时</span>
+          <span class="rs-val" id="res-time">0秒</span>
+        </div>
+        <div class="rs-item">
+          <span class="rs-label">正确率</span>
+          <span class="rs-val" id="res-rate">0%</span>
+        </div>
+      </div>
+      <div class="result-actions">
+        <button class="btn-primary" onclick="retryExam()">🔄 重新练习</button>
+        <button class="btn-outline" onclick="reviewWrong()">📋 查看错题</button>
+        <button class="btn-secondary" onclick="showPage('home')">🏠 返回首页</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 错题本页 -->
+<div id="page-wrong" class="page">
+  <div class="page-header">
+    <h2>📋 错题本</h2>
+    <button class="btn-danger-outline" onclick="clearWrongBook()">清空错题本</button>
+  </div>
+  <div id="wrong-list-container">
+    <div class="empty-tip">暂无错题，继续加油！🌟</div>
+  </div>
+</div>
+
+<!-- 学习统计页 -->
+<div id="page-stats" class="page">
+  <div class="page-header">
+    <h2>📈 学习统计</h2>
+  </div>
+  <div class="stats-grid">
+    <div class="stats-card">
+      <div class="stats-icon">📚</div>
+      <div class="stats-info">
+        <div class="stats-value" id="stat-total-done">0</div>
+        <div class="stats-label">累计答题</div>
+      </div>
+    </div>
+    <div class="stats-card">
+      <div class="stats-icon">✅</div>
+      <div class="stats-info">
+        <div class="stats-value green" id="stat-correct">0</div>
+        <div class="stats-label">正确题数</div>
+      </div>
+    </div>
+    <div class="stats-card">
+      <div class="stats-icon">🎯</div>
+      <div class="stats-info">
+        <div class="stats-value" id="stat-rate">0%</div>
+        <div class="stats-label">综合正确率</div>
+      </div>
+    </div>
+    <div class="stats-card">
+      <div class="stats-icon">⏱️</div>
+      <div class="stats-info">
+        <div class="stats-value" id="stat-time">0分钟</div>
+        <div class="stats-label">累计学习时长</div>
+      </div>
+    </div>
+  </div>
+  <div class="module-stats">
+    <h3>各模块正确率</h3>
+    <div id="module-chart"></div>
+  </div>
+</div>
+
+<!-- 分类题库文件（顺序不能变，先加载各分类再加载整合文件） -->
+<script src="q-changshi.js"></script>
+<script src="q-yanyu.js"></script>
+<script src="q-shuliang.js"></script>
+<script src="q-panduan.js"></script>
+<script src="q-ziliao.js"></script>
+<script src="q-zonghe.js"></script>
+<script src="questions-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
